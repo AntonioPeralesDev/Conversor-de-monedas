@@ -29,4 +29,4 @@ bin/
 .DS_Store
 
 ### Crpeta de pruebas ###
-com.antonioperalesdev.currencyconverter.pruebas
+/src/com/antonioperalesdev/currencyconverter/pruebas/
