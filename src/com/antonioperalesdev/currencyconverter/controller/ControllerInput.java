@@ -11,12 +11,12 @@ public class ControllerInput {
 
     public String obtainCurrency(){
         System.out.println("Elija una divisa: " +
-                "\n1. USD: Dólar de los Estados Unidos" +
-                "\n2. EUR: Euro" +
-                "\n3. GBP: Libra Esterlina" +
-                "\n4. MXN: Peso Mexicano" +
-                "\n5. COP: Peso Colombiano" +
-                "\n6. ARS: Peso Argentino" +
+                "\n1. USD: Dólar Estadounidense" +
+                "\n2. ARS: Peso Argentino" +
+                "\n3. BOB: Peso Boliviano" +
+                "\n4. BRL: Real Brasileño" +
+                "\n5. CLP: Peso Chileno" +
+                "\n6. COP: Peso Colombiano" +
                 "\no Introduzca moneda diferente en codigo ISO 4217");
 
         String seleccion = scanner.next();
@@ -33,15 +33,15 @@ public class ControllerInput {
             switch (seleccionNumber){
                 case 1: currency = "USD";
                     break;
-                case 2: currency = "EUR";
+                case 2: currency = "ARS";
                     break;
-                case 3: currency = "GBP";
+                case 3: currency = "BOB";
                     break;
-                case 4: currency = "MXN";
+                case 4: currency = "BRL";
                     break;
-                case 5: currency = "COP";
+                case 5: currency = "CLP";
                     break;
-                case 6: currency = "ARS";
+                case 6: currency = "COP";
                     break;
                 default:
                     break;
