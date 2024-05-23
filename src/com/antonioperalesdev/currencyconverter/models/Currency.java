@@ -1,30 +1,30 @@
 package com.antonioperalesdev.currencyconverter.models;
 
 public class Currency {
-    private String baseCode;
-    private String targetCode;
+    private String baseCurrency;
+    private String targetCurrency;
     private double conversionRate;
 
     public Currency(CurrencyApi currencyApi){
-        this.baseCode = currencyApi.base_code();
-        this.targetCode = currencyApi.target_code();
+        this.baseCurrency = currencyApi.base_code();
+        this.targetCurrency = currencyApi.target_code();
         this.conversionRate = currencyApi.conversion_rate();
     }
 
-    public String getBaseCode() {
-        return baseCode;
+    public String getBaseCurrency() {
+        return baseCurrency;
     }
 
-    public void setBaseCode(String baseCode) {
-        this.baseCode = baseCode;
+    public void setBaseCurrency(String baseCode) {
+        this.baseCurrency = baseCode;
     }
 
-    public String getTargetCode() {
-        return targetCode;
+    public String getTargetCurrency() {
+        return targetCurrency;
     }
 
-    public void setTargetCode(String targetCode) {
-        this.targetCode = targetCode;
+    public void setTargetCurrency(String targetCurrency) {
+        this.targetCurrency = targetCurrency;
     }
 
     public double getConversionRate() {
