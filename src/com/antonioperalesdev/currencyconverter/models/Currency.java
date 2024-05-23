@@ -34,4 +34,8 @@ public class Currency {
     public void setConversionRate(double conversionRate) {
         this.conversionRate = conversionRate;
     }
+
+    public double calculateFinalAmount(double initialAmount){
+        return initialAmount * conversionRate;
+    }
 }
