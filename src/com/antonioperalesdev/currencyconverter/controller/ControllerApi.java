@@ -12,11 +12,11 @@ public class ControllerApi {
         client = HttpClient.newHttpClient();
     }
 
-    public String getCurrencyInformation(String moneda){
+    public String getCurrencyInformation(String baseCurrency, String targetCurrency){
 
         try {
-            String address = "https://v6.exchangerate-api.com/v6/b296a8daf9a59a9f6cc260a5/latest/" +
-                    moneda;
+            String address = "https://v6.exchangerate-api.com/v6/b296a8daf9a59a9f6cc260a5/pair/" +
+                    baseCurrency + "/" + targetCurrency;
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(address))
