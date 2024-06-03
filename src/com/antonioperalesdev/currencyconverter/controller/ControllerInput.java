@@ -4,20 +4,61 @@ import java.util.Scanner;
 
 public class ControllerInput {
     private Scanner scanner;
-
     public ControllerInput(){
         scanner = new Scanner(System.in);
     }
 
+    public String getMainMenu() {
+        return mainMenu;
+    }
+
+    public String getCurrenciesMenu() {
+        return currenciesMenu;
+    }
+
+    public String getDeposit() {
+        return deposit;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    private String mainMenu = """
+            =====================================
+                    CONVERSOR DE DIVISAS
+            =====================================
+            
+            1. Convertir divisas
+            
+            2. Historial de conversiones
+            
+            3. Salir
+            
+            =====================================
+            """;
+    private String currenciesMenu = """
+            =====================================
+                    CONVERSOR DE DIVISAS
+            =====================================
+            
+            1. USD - Dólar estadounidense
+            2. ARS - Peso argentino
+            3. BOB - Boliviano
+            4. BRL - Real brasileño
+            5. CLP - Peso chileno
+            6. COP - Peso colombiano
+            7. Introducir otra divisa (Código ISO 4217)
+            
+            =====================================
+            """;
+
+    private String deposit = "Ingrese la cantidad a convertir:";
+
+    private String result = "Resultado de la conversión:";
+
     public String obtainCurrency(){
-        System.out.println("Elija una divisa: " +
-                "\n1. USD: Dólar Estadounidense" +
-                "\n2. ARS: Peso Argentino" +
-                "\n3. BOB: Peso Boliviano" +
-                "\n4. BRL: Real Brasileño" +
-                "\n5. CLP: Peso Chileno" +
-                "\n6. COP: Peso Colombiano" +
-                "\no Introduzca moneda diferente en codigo ISO 4217");
+        System.out.println(currenciesMenu);
 
         String seleccion = scanner.next();
 
