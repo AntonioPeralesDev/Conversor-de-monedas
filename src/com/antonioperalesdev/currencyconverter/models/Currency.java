@@ -7,6 +7,7 @@ public class Currency {
     private String targetCurrency;
     private double conversionRate;
     private LocalDateTime dateTime;
+    private Double  amount;
 
     public Currency(CurrencyApi currencyApi){
         this.baseCurrency = currencyApi.base_code();
@@ -44,6 +45,7 @@ public class Currency {
     }
 
     public double calculateFinalAmount(double initialAmount){
-        return initialAmount * conversionRate;
+        this.amount = initialAmount * conversionRate;
+        return this.amount;
     }
 }
