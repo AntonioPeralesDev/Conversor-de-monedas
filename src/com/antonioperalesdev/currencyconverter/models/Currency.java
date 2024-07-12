@@ -1,13 +1,17 @@
 package com.antonioperalesdev.currencyconverter.models;
 
+import com.google.gson.ToNumberStrategy;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Currency {
     private String baseCurrency;
     private String targetCurrency;
     private double conversionRate;
     private LocalDateTime dateTime;
-    private Double  amount;
+    private Double initialAmount;
+    private Double finalAmount;
 
     public Currency(CurrencyApi currencyApi){
         this.baseCurrency = currencyApi.base_code();
@@ -44,8 +48,37 @@ public class Currency {
         this.conversionRate = conversionRate;
     }
 
+    public Double getInitialAmount() {
+        return initialAmount;
+    }
+
+    public void setInitialAmount(Double initialAmount) {
+        this.initialAmount = initialAmount;
+    }
+
+    public Double getFinalAmount() {
+        return finalAmount;
+    }
+
+    public void setFinalAmount(Double finalAmount) {
+        this.finalAmount = finalAmount;
+    }
+
     public double calculateFinalAmount(double initialAmount){
-        this.amount = initialAmount * conversionRate;
-        return this.amount;
+        this.initialAmount = initialAmount;
+        this.finalAmount = initialAmount * this.conversionRate;
+        return finalAmount;
+    }
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+    @Override
+    public String toString() {
+        return "Fecha y hora: " + dateTime.format(formatter) +
+                ", Moneda de origen: " + baseCurrency +
+                ", Moneda de destino: " + targetCurrency +
+                ", Tasa de cambio: " + conversionRate +
+                ", Cantidad de origen: " + initialAmount +
+                ", Cantidad de destino: " + finalAmount ;
     }
 }

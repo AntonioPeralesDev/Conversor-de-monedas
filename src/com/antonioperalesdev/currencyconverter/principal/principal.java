@@ -8,44 +8,69 @@ import com.antonioperalesdev.currencyconverter.models.CurrencyApi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class principal {
     public static void main(String[] args) {
         ControllerApi controllerApi = new ControllerApi();
         ControllerJson controllerJson = new ControllerJson();
         ControllerInput controllerInput = new ControllerInput();
+        Scanner scanner = new Scanner(System.in);
 
-        List<Currency> Currencies = new ArrayList<>();
+        List<Currency> currencies = new ArrayList<>();
+
+        int menu;
+        String menuDivisas;
+        boolean runProgram = true;
+        boolean runMainMenu = true;
 
         try {
-            System.out.println(controllerInput.getMainMenu());
+            while (runProgram) {
+                while (runMainMenu) {
+                    menu = controllerInput.getMainMenu();
+                    switch (menu) {
+                        case 1:
+                            try {
+                                String baseCurrency = controllerInput.getBaseCurrency();
+                                String targetCurrency = controllerInput.getTargetCurrency();
 
+                                String json = controllerApi.getCurrencyInformation(baseCurrency,targetCurrency);
+
+                                CurrencyApi micurrencyApi = controllerJson.gson.fromJson(json, CurrencyApi.class);
+
+                                Currency micurrency = new Currency(micurrencyApi);
+
+                                micurrency.calculateFinalAmount(controllerInput.getDeposit());
+                                System.out.println(controllerInput.getResult());
+                                System.out.println(micurrency.getFinalAmount());
+
+                                System.out.println(controllerInput.getEnterToContinue());
+                                String enter = scanner.nextLine();
+
+                                currencies.add(micurrency);
+                            }
+                            catch (Exception e){
+                                System.out.println(controllerInput.getError());
+                            }
+                            break;
+                        case 2:
+                            System.out.println(controllerInput.getConversionHistory());
+                            currencies.forEach(System.out::println);
+
+                            System.out.println(controllerInput.getEnterToContinue());
+                            String enter = scanner.nextLine();
+                            break;
+                        case 3:
+                            runMainMenu = false;
+                            runProgram = false;
+                        default:
+                            break;
+                    }
+                }
+            }
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
 
-        /*try{
-//            String baseCurrency = controllerInput.obtainCurrency();
-//            String targetCurrency = controllerInput.obtainCurrency();
-//
-//            String json = controllerApi.getCurrencyInformation(baseCurrency,targetCurrency);
-//            System.out.println(json);
-//
-//            CurrencyApi micurrencyApi = controllerJson.gson.fromJson(json, CurrencyApi.class);
-//            System.out.println(micurrencyApi);
-//
-//            Currency micurrency = new Currency(micurrencyApi);
-//            System.out.println(micurrency.toString());
-//
-//            String jsonOutput = controllerJson.toJson(micurrency);
-//            System.out.println(jsonOutput);
-//
-//            double finalAmount = micurrency.calculateFinalAmount(25);
-//            System.out.println(finalAmount);
-
-            System.out.println(controllerInput.getMainMenu());
-        } catch (Exception e){
-            e.getMessage();
-        }*/
     }
 }
